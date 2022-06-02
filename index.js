@@ -1,4 +1,5 @@
 /// <reference types="jquery" />
+
 const selectButton = $("select");
 const fromCurrency = $("from-currency");
 const toCurrency = $("to-Currency");
@@ -11,31 +12,14 @@ let requestOptions = {
   redirect: "follow",
   headers: myHeaders,
 };
-
-fetch(
-  (`
-  https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from}&amount={amount}`,
-  requestOptions)
-)
+fetch("https://api.apilayer.com/exchangerates_data/latest", requestOptions)
   .then((response) => response.json())
   .then((result) => {
-    Object.keys(result.rate).forEach((moneda) => {
-      $("from-currency").append($(`<option>${moneda}>`));
-    });
-  })
-  .catch((error) => console.log("error", error));
+    $("ul").html("");
 
-//const fromCurrencyList = $("from-currency");
-
-fetch(
-  (`
-  https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from}&amount={amount}`,
-  requestOptions)
-)
-  .then((response) => response.json())
-  .then((result) => {
-    Object.keys(result.rate).forEach((moneda) => {
-      $("from-currency").append($(`<option>${moneda}>`));
-    });
-  })
-  .catch((error) => console.log("error", error));
+    Object.keys(result.rates)
+      .forEach((moneda) => {
+        $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
+      })
+      .catch((error) => console.log("error", error));
+  });
