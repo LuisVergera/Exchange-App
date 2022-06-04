@@ -10,28 +10,17 @@ let requestOptions = {
   method: "GET",
   redirect: "follow",
   headers: myHeaders,
-}; /*
-fetch("https://api.apilayer.com/exchangerates_data/latest", requestOptions)
-  .then((response) => response.json())
-  .then((result) => {
-    $("ul").html("");
-
-    Object.keys(result.rates)
-      .forEach((moneda) => {
-        $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
-      })
-      .catch((error) => console.log("error", error));
-  });*/
+};
 
 selectButton.click(() => {
   fetch(
-    `https://api.apilayer.com/exchangerates_data/${date}?base=${baseCurrency}`,
+    `https://api.apilayer.com/exchangerates_data/${date}?symbols=${baseCurrency}`,
     requestOptions
   )
     .then((response) => response.json())
     .then((result) => {
+      $("#status").text(`${result.base} rates on ${result.date}`);
       $("ul").html("");
-
       Object.keys(result.rates)
         .forEach((moneda) => {
           $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
