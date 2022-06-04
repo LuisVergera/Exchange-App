@@ -30,5 +30,5 @@ selectButton.click(() => {
 });
 
 let removeOldData = () => {
-  $("li").forEach(remove());
+  $("li").forEach(remove()); // modify this later
 };
