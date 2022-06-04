@@ -28,3 +28,7 @@ selectButton.click(() => {
         .catch((error) => console.log("error", error));
     });
 });
+
+let removeOldData = () => {
+  $("li").forEach(remove());
+};
