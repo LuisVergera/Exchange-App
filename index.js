@@ -1,7 +1,7 @@
 /// <reference types="jquery" />
 const date = $("#date-selector").val();
 const selectButton = $("#select");
-const baseCurrency = $("#base-currency").text();
+const baseCurrency = $("#base-currency").val();
 
 let myHeaders = new Headers();
 myHeaders.append("apikey", "LGpPW5F47olBdyLHC1yEvAZFk0WZf2w3");
@@ -14,7 +14,7 @@ let requestOptions = {
 
 selectButton.click(() => {
   fetch(
-    `https://api.apilayer.com/exchangerates_data/${date}?symbols=${baseCurrency}`,
+    `https://api.apilayer.com/exchangerates_data/${date}&base=${baseCurrency}`,
     requestOptions
   )
     .then((response) => response.json())
