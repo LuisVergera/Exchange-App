@@ -19,6 +19,7 @@ selectButton.click(() => {
   )
     .then((response) => response.json())
     .then((result) => {
+      removeOldData();
       $("#status").text(`${result.base} rates on ${result.date}`);
       $("ul").html("");
       Object.keys(result.rates)
@@ -30,5 +31,5 @@ selectButton.click(() => {
 });
 
 let removeOldData = () => {
-  $("li").forEach(remove()); // modify this later
+  $("li").remove();
 };
