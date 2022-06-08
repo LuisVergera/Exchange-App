@@ -32,3 +32,5 @@ selectButton.click(() => {
 let removeOldData = () => {
   $("li").remove();
 };
+
+///select form function
