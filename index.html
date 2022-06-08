@@ -16,11 +16,17 @@
     <h1>Exchange App</h1>
     <div>
       <form id="inputs">
-        <label id="date-text">Select a date</label>
-        <input type="date" id="date-selector" />
-        <label id="base-text">Base</label>
-        <input id="base-currency" placeholder="ex: USD" />
-        <button type="button" id="select">Select</button>
+        <div>
+          <label for="date" id="date-text">Select a date</label>
+          <input type="date" name="date" id="date-selector" />
+        </div>
+        <div>
+          <label for="symbols" id="base-text">Base</label>
+          <select name="symbols" id="base-symbols"></select>
+        </div>
+        <div>
+          <button type="button" id="select">Select</button>
+        </div>
       </form>
     </div>
     <div>

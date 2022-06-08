@@ -1,7 +1,7 @@
 /// <reference types="jquery" />
 let date = $("#date-selector");
 const selectButton = $("#select");
-let baseCurrency = $("#base-currency");
+let baseCurrency = $("#base-symbols");
 
 let myHeaders = new Headers();
 myHeaders.append("apikey", "LGpPW5F47olBdyLHC1yEvAZFk0WZf2w3");
@@ -33,4 +33,15 @@ let removeOldData = () => {
   $("li").remove();
 };
 
-///select form function
+fetch("https://api.apilayer.com/exchangerates_data/symbols", requestOptions)
+  .then((response) => response.json())
+  .then((result) => {
+    const symbols = result["symbols"];
+    Object.keys(symbols).forEach((symbol) => {
+      const baseSymbol = document.createElement("option");
+      baseSymbol.value = symbol;
+      baseSymbol.textContent = symbol + " - " + symbols[symbol];
+      $("#base-symbols").append(baseSymbol);
+    });
+  })
+  .catch((error) => console.log("error", error));
