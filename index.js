@@ -22,12 +22,11 @@ selectButton.click(() => {
       removeOldData();
       $("#status").text(`${result.base} rates on ${result.date}`);
       $("ul").html("");
-      Object.keys(result.rates)
-        .forEach((moneda) => {
-          $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
-        })
-        .catch((error) => console.log("error", error));
-    });
+      Object.keys(result.rates).forEach((moneda) => {
+        $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
+      });
+    })
+    .catch((error) => console.log("error", error));
 });
 
 let removeOldData = () => {
