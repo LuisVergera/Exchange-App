@@ -21,7 +21,7 @@ selectButton.click(() => {
     .then((result) => {
       removeOldData();
       $("#status").text(`${result.base} rates on ${result.date}`);
-      $("ul").html("");
+      // $("ul").html("");
       Object.keys(result.rates).forEach((moneda) => {
         $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
       });
