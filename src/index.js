@@ -13,6 +13,7 @@ let requestOptions = {
 };
 
 selectButton.click(() => {
+  errorHandler();
   fetch(
     `https://api.apilayer.com/exchangerates_data/${date.val()}&base=${baseCurrency.val()}`,
     requestOptions
@@ -49,5 +50,6 @@ fetch("https://api.apilayer.com/exchangerates_data/symbols", requestOptions)
 let errorHandler = () => {
   if (date.val() && baseCurrency.val() === undefined) {
     $("#status").text("Please select the date and coin");
+    event.stopPropagation();
   }
 };
