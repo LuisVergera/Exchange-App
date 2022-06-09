@@ -45,3 +45,9 @@ fetch("https://api.apilayer.com/exchangerates_data/symbols", requestOptions)
     });
   })
   .catch((error) => console.log("error", error));
+
+let errorHandler = () => {
+  if (date.val() && baseCurrency.val() === undefined) {
+    $("#status").text("Please select the date and coin");
+  }
+};
