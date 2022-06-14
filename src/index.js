@@ -49,8 +49,8 @@ fetch("https://api.apilayer.com/exchangerates_data/symbols", requestOptions)
 
 let errorHandler = () => {
   if (date.val() === "") {
-    $("#status").text("Please select the date and coin").addClass("error");
     event.stopPropagation();
+    $("#status").text("Please select the date and coin").addClass("error");
     return false;
   }
 };
