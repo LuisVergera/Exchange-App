@@ -13,21 +13,28 @@ let requestOptions = {
 };
 
 selectButton.click(() => {
-  errorHandler();
-  fetch(
-    `https://api.apilayer.com/exchangerates_data/${date.val()}&base=${baseCurrency.val()}`,
-    requestOptions
-  )
-    .then((response) => response.json())
-    .then((result) => {
-      removeOldData();
-      $("#status").text(`${result.base} rates on ${result.date}`);
-      // $("ul").html("");
-      Object.keys(result.rates).forEach((moneda) => {
-        $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
-      });
-    })
-    .catch((error) => console.log("error", error));
+  if (date.val() === "") {
+    event.stopPropagation();
+    $("#status").text("Please select the date and coin").addClass("error");
+    return false;
+  } else {
+    fetch(
+      `https://api.apilayer.com/exchangerates_data/${date.val()}&base=${baseCurrency.val()}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((result) => {
+        removeOldData();
+        $("#status")
+          .text(`${result.base} rates on ${result.date}`)
+          .attr("class", "");
+        // $("ul").html("");
+        Object.keys(result.rates).forEach((moneda) => {
+          $("ul").append($(`<li>${moneda}: ${result.rates[moneda]}</li>`));
+        });
+      })
+      .catch((error) => console.log("error", error));
+  }
 });
 
 let removeOldData = () => {
@@ -46,11 +53,3 @@ fetch("https://api.apilayer.com/exchangerates_data/symbols", requestOptions)
     });
   })
   .catch((error) => console.log("error", error));
-
-let errorHandler = () => {
-  if (date.val() === "") {
-    event.stopPropagation();
-    $("#status").text("Please select the date and coin").addClass("error");
-    return false;
-  }
-};
