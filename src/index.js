@@ -13,7 +13,7 @@ let requestOptions = {
 };
 
 selectButton.click(() => {
-  if (date.val() === "") {
+  if (date.val() === "" || baseCurrency.val() === "-Select a currency-") {
     event.stopPropagation();
     $("#status").text("Please select the date and coin").addClass("error");
     return false;

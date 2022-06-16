@@ -47,6 +47,7 @@ input {
   background: #e8e8e8;
   box-shadow: 20px 20px 60px #c5c5c5, -20px -20px 60px #ffffff;
   transition: 0.3s;
+  margin: auto;
 }
 
 input:focus {
